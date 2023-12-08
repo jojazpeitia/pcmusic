@@ -14,7 +14,7 @@ export default function DialogBox({ isOpen, onClose, title, children }: DialogBo
   }
 
   return (
-    <Draggable bounds="body">
+    <Draggable>
         <div className="text-white text-xs rounded-lg border border-white w-64 scale-100">
           <div className="flex items-center justify-between border-b border-white ">
             <h1 className="py-2 pl-3 font-bold"> 
