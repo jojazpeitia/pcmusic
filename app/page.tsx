@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import DialogBox from '@/components/ui/DialogBox';
+import { PC10, PClogo } from '@/components/svg';
 
 export default function Home() {
   const [isDialogOpen, setDialogOpen] = useState(true);
@@ -29,7 +30,14 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between">
+
+    <div className='flex justify-center items-center h-screen'>
+        <PClogo className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" />
+        <PClogo className="shrink invert w-40 h-40 md:w-72 md:h-72" /> 
+        <PC10 className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" /> 
+      </div>
+
       {/* Dialog for large screens */}
       {hasRandomPosition && (
         <div
