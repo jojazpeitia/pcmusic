@@ -5,8 +5,10 @@ import { PC10, PClogo } from '@/components/svg';
 
 export default function Home() {
   const [isDialogOpen, setDialogOpen] = useState(true);
+  const [isTracklistDialogOpen, setTracklistDialogOpen] = useState(false);
   const [hasRandomPosition, setHasRandomPosition] = useState(false);
   const [dialogPosition, setDialogPosition] = useState(getRandomPosition());
+  const [tracklistDialogPosition, setTracklistDialogPosition] = useState(getRandomPosition());
 
   useEffect(() => {
     // Update random position values on page reload
@@ -14,13 +16,28 @@ export default function Home() {
     setHasRandomPosition(true);
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
-  const handleOpenDialog = () => {
+
+  const handleOpenMainDialog = (event: MouseEvent) => {
+    // Get the click coordinates relative to the document
+    const { pageX, pageY } = event;
+    setDialogPosition({ x: pageX, y: pageY });
     setDialogOpen(true);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseMainDialog = () => {
     setDialogOpen(false);
   };
+
+  const handleOpenTracklistDialog = (event: MouseEvent) => {
+    setTracklistDialogOpen(true);
+    const { pageX, pageY } = event;
+    setTracklistDialogPosition({ x: pageX, y: pageY });
+  }
+
+  const handleCloseTracklistDialog = () => {
+    setTracklistDialogOpen(false);
+  };
+
 
   function getRandomPosition() {
     return {
@@ -31,11 +48,27 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-
-    <div className='flex justify-center items-center h-screen'>
-        <PClogo className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" />
+      <div className='flex justify-center items-center h-screen'>
+        <PClogo onClick={handleOpenMainDialog} className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl"/>
         <PClogo className="shrink invert w-40 h-40 md:w-72 md:h-72" /> 
-        <PC10 className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" /> 
+        <PC10 onClick={handleOpenTracklistDialog} className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" /> 
+      </div>
+
+      {/* Tracklist dialog for large screens */}
+      <div
+        className='hidden md:block'
+        style={{ position: 'absolute', top: `${tracklistDialogPosition.y}px`, left: `${tracklistDialogPosition.x}px` }}
+        >
+        <DialogBox isOpen={isTracklistDialogOpen} onClose={handleCloseTracklistDialog} title="tracklist">
+          <p className='mb-5'> yo </p>
+        </DialogBox>
+      </div>
+
+      {/* Tracklist dialog for small screens */}
+      <div className='md:hidden fixed top-0 left-0 w-full h-full flex justify-center items-center'>
+        <DialogBox isOpen={isTracklistDialogOpen} onClose={handleCloseTracklistDialog} title="tracklist">
+          <p className='mb-5'> yo </p>
+        </DialogBox>
       </div>
 
       {/* Dialog for large screens */}
@@ -43,7 +76,7 @@ export default function Home() {
         <div
           className='hidden md:block'
           style={{ position: 'absolute', top: `${dialogPosition.y}px`, left: `${dialogPosition.x}px` }}>
-          <DialogBox isOpen={isDialogOpen} onClose={handleCloseDialog} title="2013-2023">
+          <DialogBox isOpen={isDialogOpen} onClose={handleCloseMainDialog} title="2013-2023">
             <p className='mb-5'>After a decade of activity, 2023 will be PC Music&rsquo;s final year of new releases. Following that, the label will be dedicated to archival projects and special reissues. </p>
             <p className='mb-5'>We have an undisclosed number of new albums and singles coming very soon.</p>
             <p className='mb-5'>For now, 10 x 10 minutes of content from the past, present & future.</p>
@@ -55,7 +88,7 @@ export default function Home() {
       {/* Dialog for smaller screens */}
       {hasRandomPosition && (
         <div className='md:hidden fixed top-0 left-0 w-full h-full flex justify-center items-center'>
-          <DialogBox isOpen={isDialogOpen} onClose={handleCloseDialog} title="2013-2023">
+          <DialogBox isOpen={isDialogOpen} onClose={handleCloseMainDialog} title="2013-2023">
             <p className='mb-5'>After a decade of activity, 2023 will be PC Music&rsquo;s final year of new releases. Following that, the label will be dedicated to archival projects and special reissues. </p>
             <p className='mb-5'>We have an undisclosed number of new albums and singles coming very soon.</p>
             <p className='mb-5'>For now, 10 x 10 minutes of content from the past, present & future.</p>
@@ -63,6 +96,8 @@ export default function Home() {
           </DialogBox>
         </div>
       )}
+
+      {/* Tracklist Dialog */}
     </main>
   )
 }
