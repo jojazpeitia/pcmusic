@@ -59,14 +59,21 @@ export default function Home() {
         className='hidden md:block'
         style={{ position: 'absolute', top: `${tracklistDialogPosition.y}px`, left: `${tracklistDialogPosition.x}px` }}
         >
-        <DialogBox isOpen={isTracklistDialogOpen} onClose={handleCloseTracklistDialog} title="tracklist">
-          <p className='mb-5'> yo </p>
+        <DialogBox isOpen={isTracklistDialogOpen} onClose={handleCloseTracklistDialog} title="Tracklist">
+          <h3 className='font-bold'>A. G. Cook</h3>
+            {/* <ol className='list-decimal'> 
+              <li>Untitled (Merlyn)</li>
+              <li>Untitled (0000ff)</li> 
+              <li>Untitled (Untitled)</li> 
+              <li>Untitled (Once)</li> 
+            </ol> */}
+          <p className='mb-5'>  </p>
         </DialogBox>
       </div>
 
       {/* Tracklist dialog for small screens */}
       <div className='md:hidden fixed top-0 left-0 w-full h-full flex justify-center items-center'>
-        <DialogBox isOpen={isTracklistDialogOpen} onClose={handleCloseTracklistDialog} title="tracklist">
+        <DialogBox isOpen={isTracklistDialogOpen} onClose={handleCloseTracklistDialog} title="Tracklist">
           <p className='mb-5'> yo </p>
         </DialogBox>
       </div>
