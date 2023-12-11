@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import DialogBox from '@/components/ui/DialogBox';
 import { PC10, PClogo } from '@/components/svg';
+import Image from 'next/image';
 
 export default function Home() {
   const [isDialogOpen, setDialogOpen] = useState(true);
@@ -47,12 +48,18 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main>
       <div className='flex justify-center items-center h-screen'>
-        <PClogo onClick={handleOpenMainDialog} className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl"/>
-        <PClogo className="shrink invert w-40 h-40 md:w-72 md:h-72" /> 
-        <PC10 onClick={handleOpenTracklistDialog} className="shrink invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" /> 
+        <PClogo onClick={handleOpenMainDialog} className="shrink-0 invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl"/>
+        <Image src="/10x10.jpg" width={500} height={500} alt="Picture of the author" className="shrink w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl ml-6" />
+        <PC10 onClick={handleOpenTracklistDialog} className="shrink-0 invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" /> 
       </div>
+      
+      {/* <div className='flex flex-row h-screen justify-between items-center mx-auto'>
+        <PClogo onClick={handleOpenMainDialog}  className="invert flex-1 w-72 h-72 hover:cursor-pointer hover:drop-shadow-3xl"/>
+        <Image src="/10x10.jpg" width={500} height={500} alt="Picture of the author" className="flex-1 w-72 h-auto hover:cursor-pointer hover:drop-shadow-3xl"/>
+        <PC10 onClick={handleOpenTracklistDialog} className="invert flex-1 w-72 h-72 hover:cursor-pointer hover:drop-shadow-3xl"/>
+      </div> */}
 
       {/* Tracklist dialog for large screens */}
       <div
