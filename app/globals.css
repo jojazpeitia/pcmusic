@@ -36,9 +36,6 @@ body {
 .box {
   --a:0deg; /*  needed for firefox to have a valid output */
   cursor:pointer;
-  width:500px;
-  height:500px;
-  margin:0px;
   display:inline-block;
   transition:--a 0.5s;
   background:conic-gradient(from var(--a), blue var(--a),black)

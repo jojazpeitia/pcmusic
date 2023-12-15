@@ -51,7 +51,7 @@ export default function Home() {
     <main>
       <div className='flex justify-center items-center h-screen'>
         <PClogo onClick={handleOpenMainDialog} className="shrink-0 invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl"/>
-        <div className='box shrink w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl ml-6'/>
+        <div className='box shrink-0 w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl ml-6'/>
         <PC10 onClick={handleOpenTracklistDialog} className="shrink-0 invert w-40 h-40 md:w-72 md:h-72 hover:cursor-pointer hover:drop-shadow-3xl" /> 
       </div>
       
